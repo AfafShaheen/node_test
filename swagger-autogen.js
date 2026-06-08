@@ -62,6 +62,31 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
                     id: { type: "integer" },
                 },
             },
+            "/insert_interface": {
+                type: "object",
+                required: ["english_name", "arabic_name", "father_id"],
+                properties: {
+                    english_name: { type: "string", description: "اسم الواجهة بالإنجليزية" },
+                    arabic_name: { type: "string", description: "اسم الواجهة بالعربية" },
+                    father_id: { type: "integer", description: "معرّف الواجهة الأب" },
+                },
+            },
+            "/add_premission": {
+                type: "object",
+                required: ["user_type_id", "interface_id"],
+                properties: {
+                    user_type_id: { type: "integer", description: "معرّف نوع المستخدم" },
+                    interface_id: { type: "integer", description: "معرّف الواجهة" },
+                },
+            },
+            "/insert_list_by_tablename": {
+                type: "object",
+                required: ["tablename", "name"],
+                properties: {
+                    tablename: { type: "string", description: "اسم الجدول" },
+                    name: { type: "string", description: "اسم العنصر المراد إضافته" },
+                },
+            },
         };
 
         Object.entries(output.paths).forEach(([path, methods]) => {

@@ -12,8 +12,8 @@ const update_con ={
         }
     },
     active_deactive_user: async (req,res)=>{
-        const {id}=req.body;
         try {
+            const {id}=req.body;
             const active_deactive=await pool.query('SELECT * FROM active_deactive_user($1)',[id]);
             res.json(active_deactive.rows[0]);
         }

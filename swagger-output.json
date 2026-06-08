@@ -180,6 +180,209 @@
           }
         }
       }
+    },
+    "/delete_interface_by_id/{id}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/delete_list_by_id/{tablename}/{id}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "name": "tablename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/delete_premission_by_id/{id}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/delete_premission/{user_type_id}/{interface_id}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_type_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interface_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/insert_interface": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "english_name",
+                  "arabic_name",
+                  "father_id"
+                ],
+                "properties": {
+                  "english_name": {
+                    "type": "string",
+                    "description": "اسم الواجهة بالإنجليزية"
+                  },
+                  "arabic_name": {
+                    "type": "string",
+                    "description": "اسم الواجهة بالعربية"
+                  },
+                  "father_id": {
+                    "type": "integer",
+                    "description": "معرّف الواجهة الأب"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/add_premission": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "user_type_id",
+                  "interface_id"
+                ],
+                "properties": {
+                  "user_type_id": {
+                    "type": "integer",
+                    "description": "معرّف نوع المستخدم"
+                  },
+                  "interface_id": {
+                    "type": "integer",
+                    "description": "معرّف الواجهة"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insert_list_by_tablename": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tablename",
+                  "name"
+                ],
+                "properties": {
+                  "tablename": {
+                    "type": "string",
+                    "description": "اسم الجدول"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "اسم العنصر المراد إضافته"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
