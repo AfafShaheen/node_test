@@ -51,9 +51,48 @@
         }
       }
     },
+    "/login": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "user_name",
+                  "password"
+                ],
+                "properties": {
+                  "user_name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/update_password_user": {
       "put": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -86,6 +125,13 @@
     "/active_deactive_user": {
       "put": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -114,6 +160,13 @@
     "/get_all_user": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -124,6 +177,13 @@
     "/get_all_premission": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -134,12 +194,15 @@
     "/get_list_by_tablename/{tablename}": {
       "get": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "tablename",
             "in": "path",
@@ -148,18 +211,26 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/get_permissions_by_user_type/{user_type}": {
       "get": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "user_type",
             "in": "path",
@@ -168,12 +239,24 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/get_all_interface": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -184,12 +267,15 @@
     "/delete_interface_by_id/{id}": {
       "delete": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "id",
             "in": "path",
@@ -198,18 +284,26 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/delete_list_by_id/{tablename}/{id}": {
       "delete": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "tablename",
             "in": "path",
@@ -226,18 +320,26 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/delete_premission_by_id/{id}": {
       "delete": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "id",
             "in": "path",
@@ -246,18 +348,26 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/delete_premission/{user_type_id}/{interface_id}": {
       "delete": {
         "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "user_type_id",
             "in": "path",
@@ -274,12 +384,24 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/insert_interface": {
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -319,6 +441,13 @@
     "/add_premission": {
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -353,6 +482,13 @@
     "/insert_list_by_tablename": {
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "default": {
             "description": ""

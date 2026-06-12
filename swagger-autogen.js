@@ -20,6 +20,8 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
     }
 
     if (output.paths) {
+        const publicPaths = new Set(["/login", "/create_user"]);
+
         Object.entries(output.paths).forEach(([path, methods]) => {
             const matches = path.match(/\{[^}]+\}/g) || [];
             const paramNames = matches.map((m) => m.slice(1, -1));
@@ -37,6 +39,14 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
         });
 
         const bodySchemas = {
+            "/login": {
+                type: "object",
+                required: ["user_name", "password"],
+                properties: {
+                    user_name: { type: "string" },
+                    password: { type: "string" },
+                },
+            },
             "/create_user": {
                 type: "object",
                 required: ["name", "password", "full_name", "user_type"],
@@ -91,6 +101,22 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
 
         Object.entries(output.paths).forEach(([path, methods]) => {
             Object.entries(methods).forEach(([method, op]) => {
+                if (!publicPaths.has(path)) {
+                    const existingParameters = Array.isArray(op.parameters) ? op.parameters : [];
+                    const hasToken = existingParameters.some((parameter) => parameter.name === "token" && parameter.in === "header");
+                    if (!hasToken) {
+                        op.parameters = [
+                            {
+                                name: "token",
+                                in: "header",
+                                required: true,
+                                schema: { type: "string" },
+                            },
+                            ...existingParameters,
+                        ];
+                    }
+                }
+
                 if (method !== "post" && method !== "put") {
                     return;
                 }
