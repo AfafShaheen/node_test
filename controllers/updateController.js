@@ -1,10 +1,11 @@
 const pool=require('../database/database.js');
+const token = req.header.token;
 
 const update_con ={
     update_password_user: async (req,res)=>{
         try {
             const {id,password}=req.body;
-            const update_password=await pool.query('SELECT * FROM update_password_user($1,$2)',[id,password]);
+            const update_password=await pool.query('SELECT * FROM update_password_user($1,$2,$3)',[id,password, token]);
             res.json(update_password.rows[0]);
         }
         catch (err) {
@@ -14,7 +15,7 @@ const update_con ={
     active_deactive_user: async (req,res)=>{
         try {
             const {id}=req.body;
-            const active_deactive=await pool.query('SELECT * FROM active_deactive_user($1)',[id]);
+            const active_deactive=await pool.query('SELECT * FROM active_deactive_user($1,$2)',[id, token]);
             res.json(active_deactive.rows[0]);
         }
         catch (err) {

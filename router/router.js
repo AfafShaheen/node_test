@@ -14,10 +14,13 @@ const delete_premission=require('../controllers/deletController.js').delete_con.
 const insert_interface=require('../controllers/insertControoler.js').insertController.insert_interface;
 const add_premission=require('../controllers/insertControoler.js').insertController.add_premission;
 const insert_list_by_tablename=require('../controllers/insertControoler.js').insertController.insert_list_by_tablename;
+const check_con = require('../controllers/checkController.js').check_con;
 
 // #swagger.tags = ['User']
 // #swagger.parameters['body'] = { in: 'body', required: true, schema: { name: 'string', password: 'string', full_name: 'string', user_type: 'string' } }
 router.post('/create_user',create_user);
+
+router.use(check_con.authentication);
 
 // #swagger.tags = ['User']
 // #swagger.parameters['body'] = { in: 'body', required: true, schema: { id: 1, password: 'string' } }

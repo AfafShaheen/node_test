@@ -1,10 +1,10 @@
 const pool=require('../database/database.js');
-
+const token = req.header.token;
 const delete_con={
     delete_interface_by_id: async(req,res)=>{
         try {
             const {id} = req.params;
-            const delete_interface = await pool.query('SELECT * FROM delete_interface_by_id($1)',[id]);
+            const delete_interface = await pool.query('SELECT * FROM delete_interface_by_id($1,$2)',[id, token]);
             res.json(delete_interface.rows[0]);
         } catch (error) {
             console.error(error);
@@ -14,7 +14,7 @@ const delete_con={
     delete_list_by_id : async(req,res) => {
         try {   
             const {tablename,id} = req.params;
-            const delete_list = await pool.query('SELECT * FROM delete_list_by_id($1,$2)',[tablename,id]);
+            const delete_list = await pool.query('SELECT * FROM delete_list_by_id($1,$2,$3)',[tablename,id, token]);
             res.json(delete_list.rows[0]);
     }   
     catch(error){
@@ -36,7 +36,7 @@ const delete_con={
     delete_premission: async(req,res) => {
         try{
             const {user_type_id,interface_id} = req.params;
-            const delete_premission = await pool.query('SELECT * FROM delete_premission($1,$2)',[user_type_id,interface_id]);   
+            const delete_premission = await pool.query('SELECT * FROM delete_premission($1,$2,$3)',[user_type_id,interface_id, token]);   
             res.json(delete_premission.rows[0]);
         }
         catch(error){
