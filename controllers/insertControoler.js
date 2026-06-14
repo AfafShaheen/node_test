@@ -9,8 +9,7 @@ const insertController = {
             res.json(new_user.rows[0]);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
+            res.status(404).json({ error: 'حدث خطأ' })        }
     },
     add_premission: async (req,res) => {
         try {
@@ -20,7 +19,7 @@ const insertController = {
             res.json(new_premission.rows[0]);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     insert_list_by_tablename : async(req,res)=>{
@@ -32,7 +31,7 @@ const insertController = {
         }
         catch(error){
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     insert_interface: async(req,res) =>{
@@ -44,7 +43,7 @@ const insertController = {
         }
         catch(error){
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     }
 };

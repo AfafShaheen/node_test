@@ -4,9 +4,9 @@ const get_con = {
     get_all_user: async (req, res) => {
         try {
             const all_user = await pool.query("SELECT * FROM get_all_users()");
-            res.json(all_user.rows);
+            res.status(200).json({ success: all_user.rows });
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     get_all_premission: async (req, res) => {
@@ -14,9 +14,9 @@ const get_con = {
             const all_premission = await pool.query(
                 "SELECT * FROM get_all_permissions()",
             );
-            res.json(all_premission.rows);
+            res.status(200).json({ success: all_premission.rows });
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     get_all_interface: async (req, res) => {
@@ -24,9 +24,9 @@ const get_con = {
             const all_interface = await pool.query(
                 "SELECT * FROM get_all_interfaces()",
             );
-            res.json(all_interface.rows);
+            res.status(200).json({ success: all_interface.rows });
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     get_list_by_tablename: async (req, res) => {
@@ -38,9 +38,9 @@ const get_con = {
             const list = await pool.query("SELECT * FROM get_list_by_tablename($1)", [
                 tablename,
             ]);
-            res.json(list.rows);
+            res.status(200).json({ success: list.rows });
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
     get_permissions_by_user_type: async (req, res) => {
@@ -50,9 +50,9 @@ const get_con = {
                 "SELECT * FROM get_permissions_by_user_type($1)",
                 [user_type],
             );
-            res.json(permissions.rows);
+            res.status(200).json({ success: permissions.rows });
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(404).json({ error: 'حدث خطأ' });
         }
     },
 };
