@@ -6,10 +6,10 @@ const update_con ={
             const token = req.headers.token;
             const {id,password}=req.body;
             const update_password=await pool.query('SELECT * FROM update_password_user($1,$2,$3)',[id,password, token]);
-            res.json(update_password.rows[0]);
+            res.status(200).json({ success: update_password.rows[0] });
         }
         catch (err) {
-            res.status(404).json({ message: err.message });
+            res.status(404).json({ error: err.message });
         }
     },
     active_deactive_user: async (req,res)=>{
@@ -17,10 +17,10 @@ const update_con ={
             const token = req.headers.token;
             const {id}=req.body;
             const active_deactive=await pool.query('SELECT * FROM active_deactive_user($1,$2)',[id, token]);
-            res.json(active_deactive.rows[0]);
+            res.status(200).json({ success: active_deactive.rows[0] });
         }
         catch (err) {
-            res.status(404).json({ message: err.message });
+            res.status(404).json({ error: err.message });
         }
     }
 }

@@ -31,7 +31,7 @@ const get_con = {
     },
     get_list_by_tablename: async (req, res) => {
         try {
-            const { tablename } = req.params;
+            const { tablename } = req.body;
             if (!tablename) {
                 return res.status(400).json({ message: "tablename is required" });
             }
@@ -45,7 +45,7 @@ const get_con = {
     },
     get_permissions_by_user_type: async (req, res) => {
         try {
-            const { user_type } = req.params;
+            const { user_type } = req.body;
             const permissions = await pool.query(
                 "SELECT * FROM get_permissions_by_user_type($1)",
                 [user_type],

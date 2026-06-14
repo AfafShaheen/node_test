@@ -52,13 +52,13 @@ router.get('/get_permissions_by_user_type/:user_type',get_permissions_by_user_ty
 // #swagger.tags = ['Interface']
 router.get('/get_all_interface',get_all_interface);
 
-router.delete('/delete_interface_by_id/:id',delete_interface_by_id);
+router.delete('/delete_interface_by_id',delete_interface_by_id);
 
-router.delete('/delete_list_by_id/:tablename/:id',delete_list_by_id);
+router.delete('/delete_list_by_id/:tablename',delete_list_by_id);
 
-router.delete('/delete_premission_by_id/:id',delete_premission_by_id);
+router.delete('/delete_premission_by_id',delete_premission_by_id);
 
-router.delete('/delete_premission/:user_type_id/:interface_id',delete_premission);
+router.delete('/delete_premission/:user_type_id',delete_premission);
 
 // #swagger.tags = ['Interface']
 // #swagger.parameters['body'] = { in: 'body', required: true, schema: { english_name: 'string', arabic_name: 'string', father_id: 1 } }

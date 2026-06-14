@@ -97,6 +97,34 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
                     name: { type: "string", description: "اسم العنصر المراد إضافته" },
                 },
             },
+            "/delete_interface_by_id": {
+                type: "object",
+                required: ["id"],
+                properties: {
+                    id: { type: "integer", description: "معرّف الواجهة المراد حذفها" },
+                },
+            },
+            "/delete_list_by_id/{tablename}": {
+                type: "object",
+                required: ["id"],
+                properties: {
+                    id: { type: "integer", description: "معرّف السجل المراد حذفه" },
+                },
+            },
+            "/delete_premission_by_id": {
+                type: "object",
+                required: ["id"],
+                properties: {
+                    id: { type: "integer", description: "معرّف الصلاحية المراد حذفها" },
+                },
+            },
+            "/delete_premission/{user_type_id}": {
+                type: "object",
+                required: ["interface_id"],
+                properties: {
+                    interface_id: { type: "integer", description: "معرّف الواجهة المراد حذف صلاحيتها" },
+                },
+            },
         };
 
         Object.entries(output.paths).forEach(([path, methods]) => {
@@ -117,7 +145,7 @@ swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
                     }
                 }
 
-                if (method !== "post" && method !== "put") {
+                if (method !== "post" && method !== "put" && method !== "delete") {
                     return;
                 }
                 const schema = bodySchemas[path] || {

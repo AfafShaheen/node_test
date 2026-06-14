@@ -2,7 +2,7 @@ const pool=require('../database/database.js');
 const delete_con={
     delete_interface_by_id: async(req,res)=>{
         try {
-            const token = req.header.token;
+            const token = req.headers.token;
             const { id } = req.body;
             const delete_interface = await pool.query('SELECT * FROM delete_interface_by_id($1,$2)',[id, token]);
             res.status(200).json({ success: delete_interface.rows[0] });
