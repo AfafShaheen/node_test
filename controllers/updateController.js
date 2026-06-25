@@ -9,7 +9,7 @@ const update_con ={
             res.status(200).json({ success: update_password.rows[0] });
         }
         catch (err) {
-            res.status(404).json({ error: err.message });
+            res.status(404).json({ error: "حدث خطأ" });
         }
     },
     active_deactive_user: async (req,res)=>{
@@ -20,7 +20,7 @@ const update_con ={
             res.status(200).json({ success: active_deactive.rows[0] });
         }
         catch (err) {
-            res.status(404).json({ error: err.message });
+            res.status(404).json({ error: "حدث خطأ" });
         }
     }
 }

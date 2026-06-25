@@ -14,7 +14,10 @@ app.use(cors({
 app.use(express.json());
 
 const swaggerAuth = basicAuth({
-    users: { afaf: '123' },
+    users: {
+        afaf: '123',
+        test: '1234',
+    },
     challenge: true,
 });
 
