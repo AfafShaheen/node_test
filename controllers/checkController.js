@@ -10,12 +10,12 @@ const check_con = {
                     next();
                 } else {
                     console.log("error_authentication");
-                    res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
+                    res.status(404).json({ error: error.message });
                 }
             })
             .catch((error) => {
                 console.log("from catch error_authentication");
-                res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
+                res.status(404).json({ error: error.message });
             });
     },
     login: async (req, res) => {
@@ -27,7 +27,7 @@ const check_con = {
             ]);
             res.json(result.rows[0]);
         } catch (err) {
-            res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
+            res.status(404).json({ error: error.message });
         }
     },
 };

@@ -6,7 +6,7 @@ const get_con = {
             const all_user = await pool.query("SELECT * FROM get_all_users()");
             res.json(all_user.rows);
         } catch (err) {
-            res.status(404).json({ error: "حدث خطأ" });
+            res.status(404).json({ error: err.message });
         }
     },
     get_all_premission: async (req, res) => {
@@ -16,7 +16,7 @@ const get_con = {
             );
             res.json(all_premission.rows);
         } catch (err) {
-            res.status(404).json({ error: "حدث خطأ" });
+            res.status(404).json({ error: err.message });
         }
     },
     get_all_interface: async (req, res) => {
@@ -26,21 +26,20 @@ const get_con = {
             );
             res.json(all_interface.rows);
         } catch (err) {
-            res.status(404).json({ error: "حدث خطأ" });
+            res.status(404).json({ error: err.message });
         }
     },
     get_list_by_tablename: async (req, res) => {
         try {
             const { tablename } = req.body;
             if (!tablename) {
-                return res.status(404).json({ error: "حدث خطأ" });
-            }
+            res.status(404).json({ error: error.message });            }
             const list = await pool.query("SELECT * FROM get_list_by_tablename($1)", [
                 tablename,
             ]);
             res.json(list.rows);
         } catch (err) {
-            res.status(404).json({ error: "حدث خطأ" });
+            res.status(404).json({ error: err.message });
         }
     },
     get_permissions_by_user_type: async (req, res) => {
@@ -52,7 +51,7 @@ const get_con = {
             );
             res.json(permissions.rows);
         } catch (err) {
-            res.status(404).json({ error: "حدث خطأ" });
+            res.status(404).json({ error: err.message });
         }
     },
 };

@@ -9,7 +9,8 @@ const insertController = {
             res.status(200).json({ success: new_user.rows });
         } catch (error) {
             console.error(error);
-            res.status(404).json({ error: 'حدث خطأ' })        }
+            res.status(404).json({ error: error.message });
+        }
     },
     add_premission: async (req,res) => {
         try {
@@ -19,7 +20,7 @@ const insertController = {
             res.status(200).json({ success: new_premission.rows[0] });
         } catch (error) {
             console.error(error);
-            res.status(404).json({ error: 'حدث خطأ' });
+            res.status(404).json({ error: error.message });
         }
     },
     insert_list_by_tablename : async(req,res)=>{
@@ -31,7 +32,7 @@ const insertController = {
         }
         catch(error){
             console.error(error);
-            res.status(404).json({ error: 'حدث خطأ' });
+            res.status(404).json({ error: error.message });
         }
     },
     insert_interface: async(req,res) =>{
@@ -43,7 +44,7 @@ const insertController = {
         }
         catch(error){
             console.error(error);
-            res.status(404).json({ error: 'حدث خطأ' });
+            res.status(404).json({ error: error.message });
         }
     }
 };

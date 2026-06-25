@@ -8,7 +8,7 @@ const delete_con={
             res.json(delete_interface.rows[0]);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: error.message });
         }           
     },
     delete_list_by_id : async(req,res) => {
@@ -20,7 +20,7 @@ const delete_con={
     }   
     catch(error){
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(404).json({ error: error.message });
         }
     },
     delete_premission_by_id : async(req,res) => {
@@ -32,7 +32,7 @@ const delete_con={
         }
         catch(error){   
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: error.message });
         }
     },
     delete_premission: async(req,res) => {
@@ -44,7 +44,7 @@ const delete_con={
         }
         catch(error){
             console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(404).json({ error: error.message });
         }
     }
 }
