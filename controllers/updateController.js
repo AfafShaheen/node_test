@@ -25,4 +25,4 @@ const update_con ={
     }
 }
 
-module.exports = update_con;
+module.exports = { update_con };

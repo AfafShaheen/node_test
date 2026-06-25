@@ -1,12 +1,11 @@
 {
   "scripts": {
-    "swagger": "node swagger-autogen.js",
-    "prestart": "npm run swagger",
     "start": "node index.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "express-basic-auth": "^1.2.1",
     "pg": "^8.21.0",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.3.0",
