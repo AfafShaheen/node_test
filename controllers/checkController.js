@@ -1,22 +1,28 @@
 const pool = require("../database/database.js");
+const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 const check_con = {
     authentication: async (req, res, next) => {
         const token = req.headers.token;
-        await pool
-            .query("select * from authentication($1)", [token])
-            .then((result) => {
-                if (result.rows[0].authentication > 0) {
-                    next();
-                } else {
-                    console.log("error_authentication");
-                    res.status(404).json({ error: error.message });
-                }
-            })
-            .catch((error) => {
-                console.log("from catch error_authentication");
-                res.status(404).json({ error: error.message });
-            });
+
+        if (!token) {
+            return res.status(404).json({ error: err.message });
+        }
+
+        const secret = process.env.JWT_SECRET;
+
+        jwt.verify(token, secret, (err, payload) => {
+            if (err) {
+                console.log("error_authentication");
+                return res.status(404).json({ error: err.message });
+            }
+
+            req.userToken = payload.userToken;
+            req.userRole = payload.role;
+
+            next();
+        });
     },
     login: async (req, res) => {
         try {
@@ -25,9 +31,36 @@ const check_con = {
                 user_name,
                 password,
             ]);
-            res.json(result.rows[0]);
+
+            if (!result.rows || result.rows.length === 0) {
+                return res.status(404).json({ error: err.message });
+            }
+
+            const user = result.rows[0];
+
+            if (!user.token_val) {
+                return res.status(404).json({ error: err.message });
+            }
+
+            const payload = {
+                userToken: user.token_val,
+                role: user.type_id,
+            };
+
+            const secret = process.env.JWT_SECRET;
+            const expiresIn = process.env.JWT_EXPIRES_IN;
+
+            const jwtToken = jwt.sign(payload, secret, { expiresIn });
+
+            res.json({
+                token: jwtToken,
+                type_id: user.type_id,
+                full_name: user.full_name,
+                user_name: user.user_name,
+                is_active: user.is_active,
+            });
         } catch (err) {
-            res.status(404).json({ error: error.message });
+            res.status(404).json({ error: err.message });
         }
     },
 };
