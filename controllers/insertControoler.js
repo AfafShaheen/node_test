@@ -16,7 +16,7 @@ const insertController = {
         try {
             const token = req.userToken;
             const {user_type_id,interface_id} = req.body;
-            const new_premission = await pool.query('SELECT * FROM add_premission($1,$2,$3)', [user_type_id,interface_id, token]);
+            const new_premission = await pool.query('SELECT * FROM add_permission($1,$2,$3)', [user_type_id,interface_id, token]);
             res.status(200).json({ success: new_premission.rows[0] });
         } catch (error) {
             console.error(error);
