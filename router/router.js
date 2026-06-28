@@ -5,6 +5,7 @@ const insertController = require('../controllers/insertControoler.js').insertCon
 const delete_con = require('../controllers/deletController.js').delete_con;
 const check_con = require('../controllers/checkController.js').check_con;
 
+
 /**
  * @swagger
  * /login:
@@ -32,8 +33,6 @@ const check_con = require('../controllers/checkController.js').check_con;
  *         description: Login successful, returns the token
  */
 router.post('/login',check_con.login);
-
-router.use(check_con.authentication);
 
 /**
  * @swagger
@@ -67,6 +66,10 @@ router.use(check_con.authentication);
  *         description: User created successfully
  */
 router.post('/create_user',insertController.create_user);
+
+
+router.use(check_con.authentication);
+
 
 /**
  * @swagger
