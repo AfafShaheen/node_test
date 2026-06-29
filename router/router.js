@@ -5,7 +5,6 @@ const insertController = require('../controllers/insertControoler.js').insertCon
 const delete_con = require('../controllers/deletController.js').delete_con;
 const check_con = require('../controllers/checkController.js').check_con;
 
-
 /**
  * @swagger
  * /login:
@@ -34,6 +33,7 @@ const check_con = require('../controllers/checkController.js').check_con;
  */
 router.post('/login',check_con.login);
 
+
 /**
  * @swagger
  * /create_user:
@@ -60,7 +60,7 @@ router.post('/login',check_con.login);
  *               full_name:
  *                 type: string
  *               user_type:
- *                 type: string
+ *                 type: integer
  *     responses:
  *       200:
  *         description: User created successfully
@@ -69,7 +69,6 @@ router.post('/create_user',insertController.create_user);
 
 
 router.use(check_con.authentication);
-
 
 /**
  * @swagger
@@ -151,7 +150,7 @@ router.get('/get_all_premission',get_con.get_all_premission);
 /**
  * @swagger
  * /get_list_by_tablename:
- *   get:
+ *   post:
  *     summary: Get a list of items by table name
  *     tags:
  *       - Lookup
@@ -170,12 +169,12 @@ router.get('/get_all_premission',get_con.get_all_premission);
  *       200:
  *         description: List of items for the given table
  */
-router.get('/get_list_by_tablename',get_con.get_list_by_tablename);
+router.post('/get_list_by_tablename',get_con.get_list_by_tablename);
 
 /**
  * @swagger
  * /get_permissions_by_user_type:
- *   get:
+ *   post:
  *     summary: Get permissions by user type
  *     tags:
  *       - Permission
@@ -189,12 +188,12 @@ router.get('/get_list_by_tablename',get_con.get_list_by_tablename);
  *               - user_type
  *             properties:
  *               user_type:
- *                 type: string
+ *                 type: integer
  *     responses:
  *       200:
  *         description: List of permissions for the given user type
  */
-router.get('/get_permissions_by_user_type',get_con.get_permissions_by_user_type);
+router.post('/get_permissions_by_user_type',get_con.get_permissions_by_user_type);
 
 /**
  * @swagger
@@ -283,33 +282,6 @@ router.delete('/delete_list_by_id',delete_con.delete_list_by_id);
  *         description: Permission deleted successfully
  */
 router.delete('/delete_premission_by_id',delete_con.delete_premission_by_id);
-
-/**
- * @swagger
- * /delete_premission:
- *   delete:
- *     summary: Delete a permission link between a user type and an interface
- *     tags:
- *       - Permission
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - user_type_id
- *               - interface_id
- *             properties:
- *               user_type_id:
- *                 type: integer
- *               interface_id:
- *                 type: integer
- *     responses:
- *       200:
- *         description: Permission deleted successfully
- */
-router.delete('/delete_premission',delete_con.delete_premission);
 
 /**
  * @swagger

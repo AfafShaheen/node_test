@@ -34,18 +34,6 @@ const delete_con={
             console.error(error);
             res.status(404).json({ error: error.message });
         }
-    },
-    delete_premission: async(req,res) => {
-        try{
-            const token = req.userToken;
-            const {user_type_id,interface_id} = req.body;
-            const delete_premission = await pool.query('SELECT * FROM delete_premission($1,$2,$3)',[user_type_id,interface_id, token]);   
-            res.json(delete_premission.rows[0]);
-        }
-        catch(error){
-            console.error(error);
-            res.status(404).json({ error: error.message });
-        }
     }
 }
 

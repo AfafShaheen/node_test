@@ -7,7 +7,7 @@ const check_con = {
         const token = req.headers.token;
 
         if (!token) {
-            return res.status(404).json({ error: err.message });
+            return res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
         }
 
         const secret = process.env.JWT_SECRET;
@@ -15,7 +15,7 @@ const check_con = {
         jwt.verify(token, secret, (err, payload) => {
             if (err) {
                 console.log("error_authentication");
-                return res.status(404).json({ error: err.message });
+                return res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
             }
 
             req.userToken = payload.userToken;
@@ -33,13 +33,13 @@ const check_con = {
             ]);
 
             if (!result.rows || result.rows.length === 0) {
-                return res.status(404).json({ error: err.message });
+                return res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
             }
 
             const user = result.rows[0];
 
             if (!user.token_val) {
-                return res.status(404).json({ error: err.message });
+                return res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
             }
 
             const payload = {
@@ -60,7 +60,7 @@ const check_con = {
                 is_active: user.is_active,
             });
         } catch (err) {
-            res.status(404).json({ error: err.message });
+            return res.status(404).json({ error: 'حدث خطأ أثناء المصادقة' });
         }
     },
 };
